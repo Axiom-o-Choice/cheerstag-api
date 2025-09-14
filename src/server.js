@@ -7,20 +7,16 @@ const PORT = process.env.PORT || 3000;
 const mongoUri = process.env.MONGODB_URI;
 const client = new MongoClient(mongoUri);
 
-try {
-    await client.connect();
-} catch (err) {
-    console.log(err);
-}
+await client.connect();
 
 app.get("/", async (_req, res) => {
     const db = "cheerstag";
     const collection = "qr";
     const query = {};
 
-    // const all = await client.db(db).collection(collection).find(query).toArray();
+    const all = await client.db(db).collection(collection).find(query).toArray();
 
-    res.json({ all: {} });
+    res.json({ all });
 });
 
 app.get("/api", async (_req, res) => {
@@ -28,9 +24,9 @@ app.get("/api", async (_req, res) => {
     const collection = "qr";
     const query = {};
 
-    // const all = await client.db(db).collection(collection).find(query).toArray();
+    const all = await client.db(db).collection(collection).find(query).toArray();
 
-    res.json({ all: {} });
+    res.json({ all });
 });
 
 app.listen(PORT, () => {
