@@ -15,7 +15,13 @@ const client = new MongoClient(process.env.MONGODB_URI);
     app.get("/", async (_req, res) => {
         const docs = await collection.find().toArray();
 
-        return res.json(docs);
+        return res.json({ docs, test: "test" });
+    });
+
+    app.get("/api", async (_req, res) => {
+        const docs = await collection.find().toArray();
+
+        return res.json({ docs, test: "test 2" });
     });
 
     app.listen(PORT, () => {
