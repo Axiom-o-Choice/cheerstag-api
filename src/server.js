@@ -4,27 +4,11 @@ import { MongoClient } from "mongodb";
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const client = new MongoClient(process.env.MONGODB_URI);
+const mongoUri = process.env.MONGODB_URI || "x";
 
-(async () => {
-    await client.connect();
+app.get("/", (_req, res) => res.json({ a: mongoUri.charAt(0) }));
+app.get("/api", (_req, res) => res.json({ b: mongoUri.charAt(0) }));
 
-    const db = client.db("cheerstag");
-    const collection = db.collection("qr");
-
-    app.get("/", async (_req, res) => {
-        const docs = await collection.find().toArray();
-
-        return res.json({ docs, test: "test" });
-    });
-
-    app.get("/api", async (_req, res) => {
-        const docs = await collection.find().toArray();
-
-        return res.json({ docs, test: "test 2" });
-    });
-
-    app.listen(PORT, () => {
-        console.log(`API listening on :${PORT}`);
-    });
-})();
+app.listen(PORT, () => {
+    console.log(`API listening on :${PORT}`);
+});
