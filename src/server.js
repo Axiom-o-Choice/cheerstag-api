@@ -7,6 +7,8 @@ const PORT = process.env.PORT || 3000;
 const mongoUri = process.env.MONGODB_URI;
 const client = new MongoClient(mongoUri);
 
+await client.connect();
+
 app.get("/", async (_req, res) => {
     const db = "cheerstag";
     const collection = "qr";
