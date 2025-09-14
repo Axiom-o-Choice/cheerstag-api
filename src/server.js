@@ -4,10 +4,28 @@ import { MongoClient } from "mongodb";
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const mongoUri = process.env.MONGODB_URI || "x";
+const mongoUri = process.env.MONGODB_URI;
+const client = new MongoClient(mongoUri);
 
-app.get("/", (_req, res) => res.json({ a: mongoUri.charAt(0) }));
-app.get("/api", (_req, res) => res.json({ b: mongoUri.charAt(0) }));
+app.get("/", async (_req, res) => {
+    const db = "cheerstag";
+    const collection = "qr";
+    const query = {};
+
+    const all = await client.db(db).collection(collection).find(query).toArray();
+
+    res.json({ all });
+});
+
+app.get("/api", async (_req, res) => {
+    const db = "cheerstag";
+    const collection = "qr";
+    const query = {};
+
+    const all = await client.db(db).collection(collection).find(query).toArray();
+
+    res.json({ all });
+});
 
 app.listen(PORT, () => {
     console.log(`API listening on :${PORT}`);
