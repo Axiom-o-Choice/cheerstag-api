@@ -4,29 +4,151 @@ import { MongoClient } from "mongodb";
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+app.use(express.json());
+
 const mongoUri = process.env.MONGODB_URI;
 const client = new MongoClient(mongoUri);
 
 await client.connect();
 
-app.get("/", async (_req, res) => {
+app.get("/tags/:id", async (req, res) => {
+    const { id } = req.params;
     const db = "cheerstag";
-    const collection = "qr";
-    const query = {};
+    const collection = "tags";
+    const query = { _id: id };
 
-    const all = await client.db(db).collection(collection).find(query).toArray();
+    const result = await client.db(db).collection(collection).findOne(query);
 
-    res.json({ all });
+    res.json({ result });
 });
 
-app.get("/api", async (_req, res) => {
+app.put("/tags/:id", async (req, res) => {
+    const { id } = req.params;
+    const text = req.text;
+
     const db = "cheerstag";
-    const collection = "qr";
-    const query = {};
+    const collection = "tags";
+    // const query = { _id: id };
 
-    const all = await client.db(db).collection(collection).find(query).toArray();
+    // {
+    //     const result = await client.db(db).collection(collection).findOne(query);
 
-    res.json({ all });
+    //     if (result) return res.json({});
+    // }
+
+    const doc = {
+        _id: id,
+        text
+    };
+
+    const result = await client.db(db).collection(collection).updateOne(doc);
+
+    res.json({ result });
+});
+
+app.get("/boxes/:id", async (req, res) => {
+    const { id } = req.params;
+    const db = "cheerstag";
+    const collection = "boxes";
+    const query = { _id: id };
+
+    const result = await client.db(db).collection(collection).findOne(query);
+
+    res.json({ result });
+});
+
+app.put("/boxes/:id", async (req, res) => {
+    const { id } = req.params;
+    const text = req.text;
+
+    const db = "cheerstag";
+    const collection = "boxes";
+    // const query = { _id: id };
+
+    // {
+    //     const result = await client.db(db).collection(collection).findOne(query);
+
+    //     if (result) return res.json({});
+    // }
+
+    const doc = {
+        _id: id,
+        text
+    };
+
+    const result = await client.db(db).collection(collection).updateOne(doc);
+
+    res.json({ result });
+});
+
+app.get("/api/tags/:id", async (req, res) => {
+    const { id } = req.params;
+    const db = "cheerstag";
+    const collection = "tags";
+    const query = { _id: id };
+
+    const result = await client.db(db).collection(collection).findOne(query);
+
+    res.json({ result });
+});
+
+app.put("/api/tags/:id", async (req, res) => {
+    const { id } = req.params;
+    const text = req.text;
+
+    const db = "cheerstag";
+    const collection = "tags";
+    // const query = { _id: id };
+
+    // {
+    //     const result = await client.db(db).collection(collection).findOne(query);
+
+    //     if (result) return res.json({});
+    // }
+
+    const doc = {
+        _id: id,
+        text
+    };
+
+    const result = await client.db(db).collection(collection).updateOne(doc);
+
+    res.json({ result });
+});
+
+app.get("/api/boxes/:id", async (req, res) => {
+    const { id } = req.params;
+    const db = "cheerstag";
+    const collection = "boxes";
+    const query = { _id: id };
+
+    const result = await client.db(db).collection(collection).findOne(query);
+
+    res.json({ result });
+});
+
+app.put("/api/boxes/:id", async (req, res) => {
+    const { id } = req.params;
+    const text = req.text;
+
+    const db = "cheerstag";
+    const collection = "boxes";
+    // const query = { _id: id };
+
+    // {
+    //     const result = await client.db(db).collection(collection).findOne(query);
+
+    //     if (result) return res.json({});
+    // }
+
+    const doc = {
+        _id: id,
+        text
+    };
+
+    const result = await client.db(db).collection(collection).updateOne(doc);
+
+    res.json({ result });
 });
 
 app.listen(PORT, () => {
