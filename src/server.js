@@ -11,6 +11,10 @@ const client = new MongoClient(mongoUri);
 
 await client.connect();
 
+app.get("/", async (req, res) => {
+    res.json({});
+});
+
 app.get("/tags/:id", async (req, res) => {
     const { id } = req.params;
     const db = "cheerstag";
