@@ -33,13 +33,13 @@ app.put("/tags/:id", async (req, res) => {
     const db = "cheerstag";
     const collection = "tags";
 
-    // const query = { _id: id };
+    const query = { _id: id };
 
-    // {
-    //     const result = await client.db(db).collection(collection).findOne(query);
+    {
+        const result = await client.db(db).collection(collection).findOne(query);
 
-    //     if (result) return res.json({});
-    // }
+        if (result) return res.json({});
+    }
 
     const filter = { _id: id };
     const update = { $set: { text } };
@@ -67,13 +67,13 @@ app.put("/boxes/:id", async (req, res) => {
     const db = "cheerstag";
     const collection = "boxes";
 
-    // const query = { _id: id };
+    const query = { _id: id };
 
-    // {
-    //     const result = await client.db(db).collection(collection).findOne(query);
+    {
+        const result = await client.db(db).collection(collection).findOne(query);
 
-    //     if (result) return res.json({});
-    // }
+        if (result) return res.json({});
+    }
 
     const filter = { _id: id };
     const update = { $set: { text } };
@@ -101,13 +101,13 @@ app.put("/api/tags/:id", async (req, res) => {
     const db = "cheerstag";
     const collection = "tags";
 
-    // const query = { _id: id };
+    const query = { _id: id };
 
-    // {
-    //     const result = await client.db(db).collection(collection).findOne(query);
+    {
+        const result = await client.db(db).collection(collection).findOne(query);
 
-    //     if (result) return res.json({});
-    // }
+        if (result) return res.json({});
+    }
 
     const filter = { _id: id };
     const update = { $set: { text } };
@@ -134,13 +134,13 @@ app.put("/api/boxes/:id", async (req, res) => {
 
     const db = "cheerstag";
     const collection = "boxes";
-    // const query = { _id: id };
+    const query = { _id: id };
 
-    // {
-    //     const result = await client.db(db).collection(collection).findOne(query);
+    {
+        const result = await client.db(db).collection(collection).findOne(query);
 
-    //     if (result) return res.json({});
-    // }
+        if (result) return res.json({});
+    }
 
     const doc = {
         _id: id,
