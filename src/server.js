@@ -32,6 +32,7 @@ app.put("/tags/:id", async (req, res) => {
 
     const db = "cheerstag";
     const collection = "tags";
+
     // const query = { _id: id };
 
     // {
@@ -40,12 +41,10 @@ app.put("/tags/:id", async (req, res) => {
     //     if (result) return res.json({});
     // }
 
-    const doc = {
-        _id: id,
-        text
-    };
+    const filter = { _id: id };
+    const update = { $set: { text } };
 
-    const result = await client.db(db).collection(collection).updateOne(doc);
+    const result = await client.db(db).collection(collection).updateOne(filter, update);
 
     res.json({ result });
 });
