@@ -38,7 +38,7 @@ app.put("/tags/:id", async (req, res) => {
     {
         const result = await client.db(db).collection(collection).findOne(query);
 
-        if (result) return res.json({});
+        if (result && result.text) return res.json({});
     }
 
     const filter = { _id: id };
@@ -72,7 +72,7 @@ app.put("/boxes/:id", async (req, res) => {
     {
         const result = await client.db(db).collection(collection).findOne(query);
 
-        if (result) return res.json({});
+        if (result && result.text) return res.json({});
     }
 
     const filter = { _id: id };
@@ -106,7 +106,7 @@ app.put("/api/tags/:id", async (req, res) => {
     {
         const result = await client.db(db).collection(collection).findOne(query);
 
-        if (result) return res.json({});
+        if (result && result.text) return res.json({});
     }
 
     const filter = { _id: id };
@@ -139,7 +139,7 @@ app.put("/api/boxes/:id", async (req, res) => {
     {
         const result = await client.db(db).collection(collection).findOne(query);
 
-        if (result) return res.json({});
+        if (result && result.text) return res.json({});
     }
 
     const doc = {
