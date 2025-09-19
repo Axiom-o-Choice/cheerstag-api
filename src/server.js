@@ -28,7 +28,7 @@ app.get("/tags/:id", async (req, res) => {
 
 app.put("/tags/:id", async (req, res) => {
     const { id } = req.params;
-    const text = req.text;
+    const text = req.body.text;
 
     const db = "cheerstag";
     const collection = "tags";
@@ -62,7 +62,7 @@ app.get("/boxes/:id", async (req, res) => {
 
 app.put("/boxes/:id", async (req, res) => {
     const { id } = req.params;
-    const text = req.text;
+    const text = req.body.text;
 
     const db = "cheerstag";
     const collection = "boxes";
@@ -96,7 +96,7 @@ app.get("/api/tags/:id", async (req, res) => {
 
 app.put("/api/tags/:id", async (req, res) => {
     const { id } = req.params;
-    const text = req.text;
+    const text = req.body.text;
 
     const db = "cheerstag";
     const collection = "tags";
@@ -130,7 +130,7 @@ app.get("/api/boxes/:id", async (req, res) => {
 
 app.put("/api/boxes/:id", async (req, res) => {
     const { id } = req.params;
-    const text = req.text;
+    const text = req.body.text;
 
     const db = "cheerstag";
     const collection = "boxes";
